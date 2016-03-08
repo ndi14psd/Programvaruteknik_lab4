@@ -1,5 +1,9 @@
 package compare;
 
+import java.time.LocalDate;
+import java.util.Map;
+import java.util.Map.Entry;
+
 import domain.DataSource;
 import domain.FootballGoalsSource;
 import domain.TemperatureSource;
@@ -19,12 +23,11 @@ public class GoalsTemperatureComparison {
 	}
 
 	public String getComparedData() {
-		StringBuilder builder = new StringBuilder();
-		result.getData().forEach((date, match) -> {
-			builder.append(date + " # " + result.getXUnit() + ": " + match.getXValue() + " - " + result.getYUnit() + ": "
-					+ match.getYValue());
-		});
-		return builder.toString();
+		String s = "{";
+		for (Entry<String, MatchedDataPair> entry : result.getData().entrySet()) {
+			s += "\"matchning\":" + " {\"date\":    " + entry.getKey()  + ",\"goals\":   " + entry.getValue().getXValue() + ",\"degrees\": " + entry.getValue().getYValue() + "},";
+		}
+		return s + " }";
 	}
 
 }
