@@ -21,15 +21,22 @@ import domain.TemperatureSource;
 /**
  * Servlet implementation class ServletTest
  */
-@WebServlet("/ServletTest")
-public class ServletTest extends HttpServlet {
+@WebServlet("/Compare")
+public class ComparisonServlet extends HttpServlet {
+	
+	private String compared;
+	private JsonFormatter formatter;
+	
+	@Override
+	public void init() throws ServletException {
+		super.init();
+		compared = new GoalsTemperatureComparison().getComparedData();
+		formatter = new JsonFormatter();
+	}
 
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		response.setContentType("application/json;charset=UTF-8");
-		
-		String compared = new GoalsTemperatureComparison().getComparedData();
-		JsonFormatter formatter = new JsonFormatter();
-		
+
 		try (PrintWriter out = response.getWriter()) {
 			String pretty = request.getParameter("pretty");
 			out.println("true".equals(pretty)? formatter.format(compared) : compared);

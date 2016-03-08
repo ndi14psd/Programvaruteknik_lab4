@@ -10,10 +10,10 @@ import domain.TemperatureSource;
 
 public class GoalsTemperatureComparison {
 
-	DataSource goals;
-	DataSource temperatures;
-	DataCollectionBuilder builder;
-	DataCollection result;
+	private DataSource goals;
+	private DataSource temperatures;
+	private DataCollectionBuilder builder;
+	private DataCollection result;
 
 	public GoalsTemperatureComparison() {
 		goals = new FootballGoalsSource();
@@ -25,9 +25,10 @@ public class GoalsTemperatureComparison {
 	public String getComparedData() {
 		String s = "{";
 		for (Entry<String, MatchedDataPair> entry : result.getData().entrySet()) {
-			s += "\"matchning\":" + " {\"date\":    " + entry.getKey()  + ",\"goals\":   " + entry.getValue().getXValue() + ",\"degrees\": " + entry.getValue().getYValue() + "},";
+			s += "\"matchning\":" + " {\"date\":    \"" + entry.getKey() + "\",\"goals\":   \"" + entry.getValue().getXValue()
+					+ "\",\"degrees\": \"" + entry.getValue().getYValue() + "\"},";
 		}
-		return s + " }";
+		return s.substring(0, s.lastIndexOf(',')) + " }";
 	}
 
 }

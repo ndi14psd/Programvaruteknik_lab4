@@ -33,11 +33,4 @@
 		<nature>org.eclipse.jdt.core.javanature</nature>
 		<nature>org.eclipse.wst.jsdt.core.jsNature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>WebContent/index.html</name>
-			<type>1</type>
-			<location>H:/public_html/index.html</location>
-		</link>
-	</linkedResources>
 </projectDescription>
