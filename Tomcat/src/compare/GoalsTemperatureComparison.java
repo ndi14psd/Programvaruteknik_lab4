@@ -23,12 +23,12 @@ public class GoalsTemperatureComparison {
 	}
 
 	public String getComparedData() {
-		String s = "{";
+		String s = "{ \"matchningar\":[";
 		for (Entry<String, MatchedDataPair> entry : result.getData().entrySet()) {
-			s += "\"matchning\":" + " {\"date\":    \"" + entry.getKey() + "\",\"goals\":   \"" + entry.getValue().getXValue()
+			s += "{\"date\":    \"" + entry.getKey() + "\",\"goals\":   \"" + entry.getValue().getXValue()
 					+ "\",\"degrees\": \"" + entry.getValue().getYValue() + "\"},";
 		}
-		return s.substring(0, s.lastIndexOf(',')) + " }";
+		return s.substring(0, s.lastIndexOf(',')) + " ]}";
 	}
 
 }
